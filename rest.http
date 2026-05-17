@@ -1,0 +1,16 @@
+# Time tacker API
+
+@baseUrl = http://localhost:8000
+
+
+### POST the TaskList
+POST {{baseUrl}}
+
+### GET the TaskList
+GET {{baseUrl}}
+
+### UPDATE the TaskList
+PUT {{baseUrl}}
+
+### DELETE the TaskList
+DELETE {{baseUrl}}

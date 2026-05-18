@@ -1,6 +1,6 @@
 # Time tacker API
 
-@baseUrl = http://localhost:8000
+@baseUrl = http://localhost:8000/api/v1/tasks
 
 
 ### POST the TaskList

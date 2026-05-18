@@ -1,13 +1,16 @@
 import express from 'express';
+import morgan from 'morgan';
 const app = express();
 const PORT = 8000;
 
-app.use("/",(req,res)=>{
-    res.json({
-        status:'success',
-        message: 'todo'
-    }  )
-})
+
+app.use(morgan("combined"))
+
+import taskRouter from './src/routers/taskRouter.js'
+
+
+
+app.use("/api/v1/tasks",taskRouter)
 
 
 app.listen(PORT, (error) => {

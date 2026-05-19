@@ -5,12 +5,22 @@
 
 ### POST the TaskList
 POST {{baseUrl}}
+Content-Type: application/json
+
+
+
 
 ### GET the TaskList
 GET {{baseUrl}}
 
 ### UPDATE the TaskList
-PUT {{baseUrl}}
+PATCH {{baseUrl}}
+Content-Type: application/json
+
+{
+    "id":2,
+    "type":"bad"
+}
 
 ### DELETE the TaskList
 DELETE {{baseUrl}}

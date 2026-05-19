@@ -5,6 +5,7 @@ const PORT = 8000;
 
 
 app.use(morgan("combined"))
+app.use(express.json());
 
 import taskRouter from './src/routers/taskRouter.js'
 

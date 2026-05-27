@@ -1,7 +1,12 @@
 import express from 'express';
 import morgan from 'morgan';
+
 const app = express();
 const PORT = 8000;
+
+//connect mono db
+import { connectMongoDB } from './src/config/dbConfig.js'
+connectMongoDB();
 
 
 app.use(morgan("combined"))

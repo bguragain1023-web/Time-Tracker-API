@@ -7,7 +7,11 @@
 POST {{baseUrl}}
 Content-Type: application/json
 
-
+{
+    "Task" : "swimming",
+    "hr" : 10,
+    "type": "entry"
+}
 
 
 ### GET the TaskList
@@ -18,9 +22,10 @@ PATCH {{baseUrl}}
 Content-Type: application/json
 
 {
-    "id":2,
+    "_id":"6a16a98a742d9a2ba3d67ecd",
+    "hr": 20,
     "type":"bad"
 }
 
 ### DELETE the TaskList
-DELETE {{baseUrl}}
+DELETE {{baseUrl}}/2

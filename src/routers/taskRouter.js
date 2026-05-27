@@ -1,6 +1,8 @@
 import express from 'express'
 const router =express.Router();
 
+import mongoose from 'mongoose';
+
 
 router.all("/", (req, res, next)=>{
     //code here 
@@ -11,52 +13,54 @@ router.all("/", (req, res, next)=>{
     next()
 });
 
+//databse table selecting
 
-let fakeDB = [{ id: 1, task: 'coding', hr: 40, type: 'entry' },
-  { id: 2, task: 'gaming', hr: 40, type: 'entry' },
-  { id: 3, task: 'cooking', hr: 40, type: 'entry' }];
+const taskSchema = new mongoose.Schema({},{strict:false});
+const TaskCollection = mongoose.model("Task", taskSchema);
 
-router.post ("/",(req,res,next)=>{
-fakeDB.push(req.body);
-console.log(fakeDB);
+
+router.post ("/", async (req,res,next)=>{
+console.log(req.body,"--------")
+//insert task
+const result = await TaskCollection(req.body).save();
+console.log(result)
+
     res.json({
         message:"message from post",
         status:"new data added"
     })
 })
-router.get ("/",(req,res,next)=>{
 
+
+router.get ("/", async (req,res,next)=>{
+    const tasks = await TaskCollection.find();
     res.json({
         message:"got data from server",
         status:"200 ok",
-        tasks: fakeDB
+        tasks,
+      
     })
 })
-router.patch ("/",(req,res,next)=>{
-    const {id , type} = req.body;
-
-    fakeDB = fakeDB.map((item) =>{
-        if(item.id == id){
-            item.type =type
-        return item;
-        }
-        return item;
-        
-
-    })
 
 
+
+router.patch ("/", async (req,res,next)=>{
+    const {_id , ...rest} = req.body;
+    console.log(req.body)
+   const result = await TaskCollection.findByIdAndUpdate(_id, rest)
     res.json({
         message:"message from put",
-        status:"200 ok"
+        status:"200 ok",
+        result
     })
 })
-router.delete ("/:id",(req,res,next)=>{
-const {id }= req.params;
-fakeDB = fakeDB.filter((item) => item.id !== +id);
+router.delete ("/:_id", async (req,res,next)=>{
+const { _id }= req.params;
+const result = await TaskCollection.findByIdAndDelete(_id)
     res.json({
         message:"Your task has been deleted",
-        status:"200 ok"
+        status:"200 ok",
+        result,
     })
 })
 

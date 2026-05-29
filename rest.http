@@ -8,9 +8,11 @@ POST {{baseUrl}}
 Content-Type: application/json
 
 {
-    "Task" : "swimming",
-    "hr" : 10,
-    "type": "entry"
+    "task" : "drive",
+    "hr": "hahah"
+   
+    
+
 }
 
 
@@ -28,4 +30,4 @@ Content-Type: application/json
 }
 
 ### DELETE the TaskList
-DELETE {{baseUrl}}/2
+DELETE {{baseUrl}}/6a16a98a742d9a2ba3d67ecd

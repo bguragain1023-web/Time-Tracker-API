@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "task" : "drive",
-    "hr": "hahah"
+    "hr": 10
    
     
 
@@ -24,10 +24,10 @@ PATCH {{baseUrl}}
 Content-Type: application/json
 
 {
-    "_id":"6a16a98a742d9a2ba3d67ecd",
+     "_id": "6a16a69b5f0db1a4c32cd624",
     "hr": 20,
     "type":"bad"
 }
 
 ### DELETE the TaskList
-DELETE {{baseUrl}}/6a16a98a742d9a2ba3d67ecd
+DELETE {{baseUrl}}/6a16a69b5f0db1a4c32cd624

@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 
 const app = express();
 const PORT = 8000;
@@ -11,6 +12,7 @@ connectMongoDB();
 
 app.use(morgan("combined"))
 app.use(express.json());
+app.use(cors())
 
 import taskRouter from './src/routers/taskRouter.js'
 

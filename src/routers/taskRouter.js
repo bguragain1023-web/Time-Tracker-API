@@ -49,32 +49,69 @@ router.get ("/", async (req,res,next)=>{
     const tasks = await getTask();
     res.json({
         message:"got data from server",
-        status:"200 ok",
+        status:"success",
         tasks,
       
     })
 })
 
-
+ 
 
 router.patch ("/", async (req,res,next)=>{
-    const {_id , ...rest} = req.body;
-    console.log(req.body)
+try {
+  const {_id , ...rest} = req.body;
+    
    const result = await updateTask(_id, rest);
+
+   result?._id ? res.json({
+        message:"Your task has been updated",
+        status:"success",
+        
+    }) :
     res.json({
-        message:"message from put",
-        status:"200 ok",
-        result
-    })
+        message:"Unable to update task! try again later",
+        status:"error",
+       
+    });
+} catch (error) {
+     console.log(error.message)
+        res.json({
+            message:error.message,
+            status: "error",
+        })
+}
+  
 })
 router.delete ("/:_id", async (req,res,next)=>{
-const { _id } = req.params;
+
+try {
+    const { _id } = req.params;
 const result = await deleteTask(_id);
-    res.json({
+!result?._id ? 
+   res.json({
         message:"Your task has been deleted",
-        status:"200 ok",
-        result,
-    })
+        status:"success",
+       
+    }) :
+res.json({
+        message:"Something went wrong!!",
+        status:"error",
+        
+    }) 
+
+} catch (error) {
+    console.log(error.message)
+        res.json({
+            message:error.message,
+            status: "error",
+        })
+}
+
+
+
+
+
+
 })
 
 

@@ -23,18 +23,22 @@ router.post ("/", async (req,res,next)=>{
     try {
         console.log(req.body,"--------")
 //insert task
-// const result = await insertTask(req.body);
-console.log(req.body)
-
+const result = await insertTask(req.body);
+console.log(result);
+result ?._id ?
     res.json({
-        message:"message from post",
-        status:"new data added",
+        message:"New data has been added successfully!!",
+        status:"success",
+    }):
+    res.json({
+        message:"Unable to add the data!! please try again later ",
+        status:"error",
     })
     } catch (error) {
         console.log(error.message)
         res.json({
-            message:"Error occured ",
-            status: error.message,
+            message:error.message,
+            status: "error",
         })
     }
 

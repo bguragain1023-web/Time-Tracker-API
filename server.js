@@ -14,6 +14,17 @@ app.use(morgan("combined"))
 app.use(express.json());
 app.use(cors())
 
+//static serving 
+import path from "path"
+const _dirname = path.resolve();
+
+//serve the stact file from the node
+app.use(express.static(path.join(_dirname,"dist")))
+app.get("/", (req,res)=>{
+    res.sendFile(path.join(_dirname,"dist","index.html"))
+
+})
+
 import taskRouter from './src/routers/taskRouter.js'
 
 

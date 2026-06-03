@@ -82,12 +82,13 @@ try {
 }
   
 })
-router.delete ("/:_id", async (req,res,next)=>{
+router.delete ("/", async (req,res,next)=>{
 
 try {
-    const { _id } = req.params;
-const result = await deleteTask(_id);
-!result?._id ? 
+   
+const result = await deleteTask(req.body);
+console.log(result)
+result?.deletedCount ? 
    res.json({
         message:"Your task has been deleted",
         status:"success",
